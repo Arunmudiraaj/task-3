@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Task 3</h1>
+    <div id="res">data</div>
+    <script>
+      fetch("https://chimpu.xyz/api/post.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: { phoneNumber: 9556436387 },
+      })
+        .then((res) => {
+          const headers = res.headers;
+          console.log(headers);
+          return headers.get("data");
+        })
+        .then((data) => {
+          console.log(data); // giving null
+          const node = document.querySelector("#res");
+          node.innerHTML = data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    </script>
+  </body>
+</html>
